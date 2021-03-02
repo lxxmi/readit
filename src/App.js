@@ -1,22 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import './App.css';
-import { getPosts } from './actions/posts';
-import {useDispatch} from 'react-redux'
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import { PostFeed } from './components/PostFeed/PostFeed';
 import  NavBar  from './components/NavBar/NavBar';
-import { Grow, Container} from '@material-ui/core';
-import { Typography} from '@material-ui/core';
-import {theme} from './theme'
-import { ThemeProvider } from "@material-ui/styles";
+import  {Auth}  from './components/Auth/Auth';
 import useStyles from './styles'
 
 function App() {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getPosts())
-  }, [])
-
   const [open, setOpen] = React.useState(false);
   const [currentPost, setCurrentPost] = useState('')
 
@@ -28,29 +18,28 @@ function App() {
     setCurrentPost('')
   };
 
-
   const classes = useStyles()
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <NavBar
-         open={open} 
-         handleDialogOpen={handleDialogOpen} 
-         handleDialogClose={handleDialogClose} 
-         currentPost={currentPost}
-         setCurrentPost={setCurrentPost}/>
-          <Container maxWidth='lg' className={classes.container} >
-            <Typography variant="h4" className={classes.title} >Articles</Typography>
-            <Grow in>
-                  <PostFeed textAlign='center'
-                   handleDialogOpen={handleDialogOpen} 
-                   handleDialogClose={handleDialogClose} 
-                   setCurrentPost={setCurrentPost}/>
-            </Grow>
-          </Container>      
-      </div>
-    </ThemeProvider>
+      <BrowserRouter>
+        <div className="App">
+          <NavBar
+          open={open} 
+          handleDialogOpen={handleDialogOpen} 
+          handleDialogClose={handleDialogClose} 
+          currentPost={currentPost}
+          setCurrentPost={setCurrentPost}/>
 
+          <Switch>
+            <Route path='/' exact>
+              <PostFeed textAlign='center'
+                handleDialogOpen={handleDialogOpen}  
+                handleDialogClose={handleDialogClose} 
+                setCurrentPost={setCurrentPost}/>
+            </Route>
+            <Route path='/auth' exact component={Auth} />
+          </Switch>
+        </div>
+      </BrowserRouter>
   );
 }
 
