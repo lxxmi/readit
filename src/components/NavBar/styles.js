@@ -10,7 +10,6 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft:'30px',
   },
   heading: {
     // color: 'rgba(0,183,255, 1)',
@@ -18,17 +17,23 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
     flexGrow: 1,
   },
-
+  container:{
+    display:'flex',
+  },
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
     width: '400px',
+    paddingRight:'0px',
   },
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '400px',
-  },
+    [theme.breakpoints.down('sm')]: {
+      display:'none',
+    },
+    },
   userName: {
     display: 'flex',
     alignItems: 'center',
@@ -42,23 +47,21 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  purplesm: {
+    display:'none',
+  [theme.breakpoints.down('sm')]: {
+    display:'flex',
+    alignItems:'center',
+    color: theme.palette.getContrastText(deepPurple[500]),
+    backgroundColor: deepPurple[500],
+  },
+},
   menuButton: {
     display:'none',
-  marginRight: theme.spacing(2),
+    margin:'0px',
   [theme.breakpoints.down('sm')]: {
     display:'block',
   },
 },
 }));
 
-// import {makeStyles } from '@material-ui/core/styles';
-
-//  export const useStyles = makeStyles((theme) => ({
-//     root: {
-//       flexGrow: 1,
-//       margin:0,
-//     },
-//     title: {
-//       flexGrow: 1,
-//     },
-//   }));

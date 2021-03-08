@@ -18,6 +18,13 @@ export default makeStyles(theme =>({
         color: 'white',
         padding:'0px',
       },
+      menu:{
+        margin:'0px',
+        padding:'0px',
+      },
+      menuitem:{
+        height:'40px',
+      },
     media: {
       height: 200,
     },

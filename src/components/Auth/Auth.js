@@ -8,24 +8,36 @@ import { Input } from '../Input'
 import Icon from './Icon'
 import useStyles from './styles'
 import { AUTH } from '../../constants/actionTypes'
+import {register, login} from '../../actions/auth.js'
 
 export const Auth = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [showPassword, setShowPassword] = useState(false)
-    const [isRegister, setIsRegister] = useState(false)
+    const [showRegisterForm, setshowRegisterForm] = useState(false)
+    const [formData, setFormData] = useState({firstname:'', lastname:'',email:'', password:'', confirmPassword:'' })
     const handleShowPassword= ()=>setShowPassword(!showPassword)
-    const handleSubmit=()=>{}
-    const handleChange= ()=>{}
+
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+        if(showRegisterForm){
+            dispatch(register(formData, history))
+        }        
+        else{
+            dispatch(login(formData, history))
+        }
+    }   
+    const handleChange= (e)=>{
+        setFormData({...formData, [e.target.name]:e.target.value})
+    }
     const classes = useStyles()
 
     const switchAuthForm = () => {
-        setIsRegister(isRegister => !isRegister)
+        setshowRegisterForm(showRegisterForm => !showRegisterForm)
         setShowPassword(false)
     }
 
     const googleSuccess = async (res)=>{
-        console.log(res)
         const token = res?.tokenId
         const result =  res?.profileObj
         try {
@@ -36,21 +48,21 @@ export const Auth = () => {
         }
     }
     const googleFailure = ()=>{
-        console.log('google login failed, try again')
+        alert('google login was unsuccessful, try again')
     }
 
 
     return (
-        <Container component='main' maxWidth='xs'>
+        <Container className={classes.main} component='main' maxWidth='xs'>
             <Paper className={classes.paper} elevation={3}>
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
-                <Typography variant='h5'>{isRegister ? 'Register':'Log In'} </Typography>
+                <Typography variant='h5'>{showRegisterForm ? 'Register':'Log In'} </Typography>
 
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2} >
-                        {isRegister ? (
+                        {showRegisterForm ? (
                             <>
                                 <Input name='firstname' label="First Name" handleChange={handleChange} autoFocus half/>
                                 <Input name='lastname' label="Last Name" handleChange={handleChange} half/>
@@ -60,11 +72,11 @@ export const Auth = () => {
                         <Input name='password' label="Password" type={showPassword ? 'text' : 'password'}
                          handleChange={handleChange} handleShowPassword={handleShowPassword} />
 
-                         {isRegister && 
+                         {showRegisterForm && 
                             <Input name='confirmPassword' label="Confirm Password" type='password' handleChange={handleChange} />
                         }
                         <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit}>
-                            {isRegister ? 'Register':'Log In'}
+                            {showRegisterForm ? 'Register':'Log In'}
                         </Button>
 
                         <GoogleLogin
@@ -83,7 +95,7 @@ export const Auth = () => {
                         <Grid container justify='center'>
                             <Grid item>
                                 <Button onClick={switchAuthForm}>
-                                    {isRegister ? 'Already have an account? Log In':'Don\'t have an account? Register' }
+                                    {showRegisterForm ? 'Already have an account? Log In':'Don\'t have an account? Register' }
                                 </Button>
                             </Grid>
                         </Grid>
