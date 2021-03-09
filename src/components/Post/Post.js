@@ -4,11 +4,10 @@ import {useDispatch} from 'react-redux'
 import {deletePost, likePost} from '../../actions/posts'
 import Button from '@material-ui/core/Button';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import DeleteIcon from '@material-ui/icons/Delete';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Fade from '@material-ui/core/Fade';import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import Fade from '@material-ui/core/Fade';
 import useStyles from './styles';
 import { Card, CardMedia, CardContent,CardActions, CardActionArea, Typography, Box } from '@material-ui/core';
 
@@ -99,7 +98,7 @@ export const Post = ({post, setCurrentPost, handleDialogOpen}) => {
                     <Typography variant="body1" >{name}</Typography>
                     <Typography variant="subtitle2" >{moment(createdAt).format('MMM Do YY')}</Typography>
                 </Box>
-                <Button size="small" color="primary" disabled={!user?.result} onClick={handleLike}>
+                <Button className={classes.Like} size="small" color="primary" disabled={!user?.result} onClick={handleLike}>
                     <Likes />
                 </Button>
             </CardActions>

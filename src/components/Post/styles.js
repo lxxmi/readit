@@ -5,12 +5,15 @@ export default makeStyles(theme =>({
     card:{
         maxWidth:"100%",
     },
+    Like:{
+      textTransform:'capitalize',
+    },
     overlayLeft: {
         position: 'absolute',
         top: '10px',
         left: '10px',
         color: 'white',
-      },
+      }, 
       overlayRight: {
         position: 'absolute',
         top: '10px',

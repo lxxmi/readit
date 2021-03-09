@@ -1,4 +1,8 @@
 *{
   margin:0;
+  font-family: sans-serif;
+  text-transform: capitalize;
 }
-
+body{
+  background-color: #eef0f1;
+}

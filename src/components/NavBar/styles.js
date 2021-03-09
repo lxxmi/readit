@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
+import { deepPurple, black } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   root: {
@@ -7,15 +7,20 @@ export default makeStyles((theme) => ({
     margin:0,
   },
   appBar: {
+    color: deepPurple[500],
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor:'white',
+    color:'black',
   },
   heading: {
-    // color: 'rgba(0,183,255, 1)',
-    color:'white',
-    textDecoration: 'none',
+   textDecoration: 'none',
     flexGrow: 1,
+    borderRadius:'5px',
+    color:'#551a8b',
+    fontWeight:'600',
+    padding:'5px',
   },
   container:{
     display:'flex',
@@ -63,5 +68,9 @@ export default makeStyles((theme) => ({
     display:'block',
   },
 },
+logout:{
+  backgroundColor:'#3b49df',
+  fontSize:'16px',
+}
 }));
 
