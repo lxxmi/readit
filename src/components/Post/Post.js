@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import moment from 'moment';
 import {useDispatch} from 'react-redux'
 import {deletePost, likePost} from '../../actions/posts'
+import LazyLoad from 'react-lazyload';
 import Button from '@material-ui/core/Button';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -53,12 +54,15 @@ export const Post = ({post, setCurrentPost, handleDialogOpen}) => {
     return (
             <Card className={classes.card} >
             <CardActionArea>
-
+            <LazyLoad height={400} once offset={100}>                
                 <CardMedia
+                component='img'
                 className={classes.media}
-                image={attachedFile}
+                image={attachedFile} 
+                // loading='lazy'
                 title={title}
                 />
+            </LazyLoad>
                 <span className={classes.overlayLeft} style={{display:'inline-block'}}>
                 </span>
                 {(creator === user?.result?.googleId || creator === user?.result?._id) &&(
