@@ -1,6 +1,8 @@
 # Readit App
 
 Basic CRUD application with Google O-auth & jwt authentication.
+readit.netlify.app
+
 ## Available Scripts
 
 In the project directory, you can run:
