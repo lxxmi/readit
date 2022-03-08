@@ -1,6 +1,6 @@
 # Readit App
 
-[Readit](https://readit.netlify.app) is a CRUD application with Google O-auth & jwt authentication.
+[Readit](https://readit.netlify.app) is a CRUD application with Google O-auth & jwt authentication capabilities, made using React, React Router, Redux.
 
 
 ## Available Scripts
